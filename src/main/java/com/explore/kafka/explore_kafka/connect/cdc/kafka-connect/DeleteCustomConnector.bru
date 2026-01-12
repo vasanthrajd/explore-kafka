@@ -1,0 +1,11 @@
+meta {
+  name: DeleteCustomConnector
+  type: http
+  seq: 14
+}
+
+delete {
+  url: http://localhost:8083/connectors/jdbc-sink-with-dlq
+  body: none
+  auth: inherit
+}

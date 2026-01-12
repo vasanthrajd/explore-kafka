@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: order-stream-app
+  kafka:
+    #bootstrap-servers: localhost:9094, localhost:9095, localhost:9096
+    bootstrap-servers: 127.0.0.1:9092, 127.0.0.1:9093, 127.0.0.1:9094
+    streams:
+      application-id: order-stream-app-v1
+      processing-guarantee: exactly_once_v2
+      num-stream-threads: 1
+      properties:
+        default.key.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+        default.value.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+        commit.interval.ms: 1000
+        cache.max.bytes.buffering: 10485760
+      replication-factor: 3
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      acks: all
+      retries: 3
+
+kafka:
+  topics:
+    input: orders
+    order: order-topic
+    payment: payment-topic
+    notification: notification-topic
+    error: error-topic
+    default: default-topic
+
+server:
+  port: 8080
+
+logging:
+  level:
+    com.example.kafkastreams: DEBUG
+    org.apache.kafka: INFO

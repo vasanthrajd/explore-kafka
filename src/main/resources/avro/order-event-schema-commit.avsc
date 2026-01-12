@@ -1,0 +1,48 @@
+{
+  "name": "GeneratedAvroSchemaTest",
+  "namespace": "com.group.GeneratedAvroSchemaTest",
+  "doc": "Here you can give more details about the use of this schema",
+  "type": "record",
+  "fields": [
+    {
+      "name": "orderId",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "productName",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "quantity",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null
+    },
+    {
+      "name": "made",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "confirmation",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    }
+  ]
+}

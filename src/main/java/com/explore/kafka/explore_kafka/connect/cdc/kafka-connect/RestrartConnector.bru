@@ -1,0 +1,19 @@
+meta {
+  name: RestrartConnector
+  type: http
+  seq: 11
+}
+
+post {
+  url: http://localhost:8083/connectors/postgres-orders-source/restart?includeTasks=true
+  body: none
+  auth: inherit
+}
+
+params:query {
+  includeTasks: true
+}
+
+headers {
+  Content-type: application/json
+}

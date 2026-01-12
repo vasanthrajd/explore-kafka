@@ -1,0 +1,15 @@
+meta {
+  name: ConnectorPause
+  type: http
+  seq: 7
+}
+
+put {
+  url: http://localhost:8083/connectors/postgres-orders-source/pause
+  body: none
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}

@@ -1,0 +1,15 @@
+// ...existing code...
+
+// Add or update the application/main class configuration:
+application {
+    // If using the legacy property:
+    mainClassName = 'com.explore.kafka.explore_kafka.producer.ProducerApplication'
+}
+
+// For newer Gradle / Spring Boot 2.5+ you can also ensure the bootJar has the right entry:
+bootJar {
+    mainClassName = 'com.explore.kafka.explore_kafka.producer.ProducerApplication'
+}
+
+// ...existing code...
+

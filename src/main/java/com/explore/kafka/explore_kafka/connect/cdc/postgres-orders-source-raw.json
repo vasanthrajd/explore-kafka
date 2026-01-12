@@ -1,0 +1,21 @@
+{
+  "name": "postgres-orders-source-raw",
+  "config": {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "database.hostname": "postgres",
+    "database.port": "5432",
+    "database.user": "postgres",
+    "database.password": "postgres",
+    "database.dbname": "testdb",
+    "database.server.name": "dbserver2",
+    "table.include.list": "public.orders",
+    "plugin.name": "pgoutput",
+    "slot.name": "debezium_orders_slot_raw",
+    "publication.name": "debezium_orders_pub_raw",
+    "topic.prefix": "postgres-raw",
+    "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "key.converter.schemas.enable": "true",
+    "value.converter.schemas.enable": "true"
+  }
+}

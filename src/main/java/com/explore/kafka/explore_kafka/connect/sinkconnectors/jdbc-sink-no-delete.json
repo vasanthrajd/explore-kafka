@@ -1,0 +1,26 @@
+{
+  "name": "jdbc-sink-no-delete",
+  "config": {
+    "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+    "tasks.max": "1",
+    "topics": "postgres.public.orders",
+    "connection.url": "jdbc:postgresql://postgres:5432/testdb",
+    "connection.user": "postgres",
+    "connection.password": "postgres",
+    "auto.create": "true",
+    "insert.mode": "upsert",
+    "pk.mode": "record_key",
+    "pk.fields": "order_id",
+    "table.name.format": "sink_data.orders_no_delete",
+    "delete.enabled": "false",
+    "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "key.converter.schemas.enable": "true",
+    "value.converter.schemas.enable": "true",
+    "transforms": "dropTombstones",
+    "transforms.dropTombstones.type": "org.apache.kafka.connect.transforms.Filter",
+    "transforms.dropTombstones.predicate": "isTombstone",
+    "predicates": "isTombstone",
+    "predicates.isTombstone.type": "org.apache.kafka.connect.transforms.predicates.RecordIsTombstone"
+  }
+}

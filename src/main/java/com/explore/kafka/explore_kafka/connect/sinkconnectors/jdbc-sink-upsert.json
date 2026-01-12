@@ -1,0 +1,21 @@
+{
+  "name": "jdbc-sink-upsert",
+  "config": {
+    "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+    "tasks.max": "1",
+    "topics": "postgres.public.orders",
+    "connection.url": "jdbc:postgresql://postgres:5432/testdb",
+    "connection.user": "postgres",
+    "connection.password": "postgres",
+    "auto.create": "true",
+    "insert.mode": "upsert",
+    "pk.mode": "record_key",
+    "pk.fields": "order_id",
+    "table.name.format": "sink_data.orders_upsert",
+    "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "key.converter.schemas.enable": "true",
+    "value.converter.schemas.enable": "true",
+    "delete.enabled": "true"
+  }
+}

@@ -1,0 +1,19 @@
+meta {
+  name: UpdateConfiguration
+  type: http
+  seq: 5
+}
+
+put {
+  url: http://localhost:8083/connectors/postgres-orders-source/config
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {"connector.class":"io.debezium.connector.postgresql.PostgresConnector","database.hostname":"postgres","database.port":"5432","database.user":"postgres","database.password":"postgres","database.dbname":"testdb","database.server.name":"dbserver1","table.include.list":"public.orders","plugin.name":"pgoutput","slot.name":"debezium_orders_slot","publication.name":"debezium_orders_pub","topic.prefix":"postgres","snapshot.mode":"initial","key.converter":"org.apache.kafka.connect.json.JsonConverter","value.converter":"org.apache.kafka.connect.json.JsonConverter","key.converter.schemas.enable":"true","value.converter.schemas.enable":"true","transforms":"unwrap","transforms.unwrap.type":"io.debezium.transforms.ExtractNewRecordState","transforms.unwrap.drop.tombstones":"false","transforms.unwrap.delete.handling.mode":"rewrite","transforms.unwrap.add.fields":"op,before"}
+}

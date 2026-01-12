@@ -1,0 +1,15 @@
+meta {
+  name: StartConnector
+  type: http
+  seq: 10
+}
+
+put {
+  url: http://localhost:8083/connectors/postgres-orders-source/start
+  body: none
+  auth: inherit
+}
+
+headers {
+  Content-type: application/json
+}

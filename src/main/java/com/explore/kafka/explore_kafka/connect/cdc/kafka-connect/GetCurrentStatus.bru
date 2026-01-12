@@ -1,0 +1,11 @@
+meta {
+  name: GetCurrentStatus
+  type: http
+  seq: 4
+}
+
+get {
+  url: http://localhost:8083/connectors/postgres-orders-source/status
+  body: none
+  auth: inherit
+}

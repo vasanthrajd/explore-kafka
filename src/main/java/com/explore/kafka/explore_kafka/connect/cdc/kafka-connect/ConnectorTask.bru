@@ -1,0 +1,11 @@
+meta {
+  name: ConnectorTask
+  type: http
+  seq: 12
+}
+
+get {
+  url: http://localhost:8083/connectors/postgres-orders-source/tasks 
+  body: none
+  auth: inherit
+}
