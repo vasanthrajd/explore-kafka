@@ -1,0 +1,24 @@
+{
+  "name": "postgres-source-remove-fields",
+  "config": {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "database.hostname": "postgres",
+    "database.port": "5432",
+    "database.user": "postgres",
+    "database.password": "postgres",
+    "database.dbname": "testdb",
+    "database.server.name": "filtered-test",
+    "table.include.list": "public.orders",
+    "plugin.name": "pgoutput",
+    "slot.name": "filtered_slot",
+    "publication.name": "filtered_pub",
+    "topic.prefix": "filtered",
+
+    "transforms": "unwrap,removeFields",
+
+    "transforms.unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
+
+    "transforms.removeFields.type": "org.apache.kafka.connect.transforms.ReplaceField$Value",
+    "transforms.removeFields.exclude": "customer_name,order_date"
+  }
+}

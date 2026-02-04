@@ -1,0 +1,12 @@
+{
+  "type": "record",
+  "name": "UserProfile",
+  "namespace": "com.enterprise.fraud",
+  "fields": [
+    {"name": "user_id", "type": "string"},
+    {"name": "avg_transaction_amount", "type": {"type": "bytes", "logicalType": "decimal", "precision": 10, "scale": 2}},
+    {"name": "home_location", "type": "string"},
+    {"name": "account_creation_date", "type": "long", "logicalType": "timestamp-millis"},
+    {"name": "risk_score", "type": "int"}
+  ]
+}

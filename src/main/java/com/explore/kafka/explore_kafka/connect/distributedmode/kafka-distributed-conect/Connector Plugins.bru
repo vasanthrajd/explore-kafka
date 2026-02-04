@@ -1,0 +1,15 @@
+meta {
+  name: Connector Plugins
+  type: http
+  seq: 9
+}
+
+get {
+  url: http://localhost:8083/connector-plugins
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}

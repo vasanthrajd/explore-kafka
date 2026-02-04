@@ -1,0 +1,25 @@
+{
+  "name": "postgres-source-routed",
+  "config": {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "database.hostname": "postgres",
+    "database.port": "5432",
+    "database.user": "postgres",
+    "database.password": "postgres",
+    "database.dbname": "testdb",
+    "database.server.name": "routed-db",
+    "table.include.list": "public.orders",
+    "plugin.name": "pgoutput",
+    "slot.name": "routed_slot",
+    "publication.name": "routed_pub",
+    "topic.prefix": "routed",
+
+    "transforms": "unwrap,route",
+
+    "transforms.unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
+
+    "transforms.route.type": "org.apache.kafka.connect.transforms.RegexRouter",
+    "transforms.route.regex": "routed\\.public\\.orders",
+    "transforms.route.replacement": "orders-$1"
+  }
+}

@@ -21,6 +21,13 @@ target/
 *.iml
 *.ipr
 
+### Kafka ###
+.lock
+.checkpoint
+.position
+.log
+.sst
+
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/

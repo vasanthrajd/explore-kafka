@@ -1,0 +1,33 @@
+{
+  "name": "postgres-source-with-metadata",
+  "config": {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "database.hostname": "postgres",
+    "database.port": "5432",
+    "database.user": "postgres",
+    "database.password": "postgres",
+    "database.dbname": "testdb",
+    "database.server.name": "metadata-test",
+    "table.include.list": "public.orders",
+    "plugin.name": "pgoutput",
+    "slot.name": "metadata_slot",
+    "publication.name": "metadata_pub",
+    "topic.prefix": "enriched",
+
+    "transforms": "unwrap,addTimestamp,addSource,addStaticField",
+
+    "transforms.unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
+    "transforms.unwrap.drop.tombstones": "false",
+
+    "transforms.addTimestamp.type": "org.apache.kafka.connect.transforms.InsertField$Value",
+    "transforms.addTimestamp.timestamp.field": "processed_at",
+
+    "transforms.addSource.type": "org.apache.kafka.connect.transforms.InsertField$Value",
+    "transforms.addSource.static.field": "data_source",
+    "transforms.addSource.static.value": "production-postgres-db",
+
+    "transforms.addStaticField.type": "org.apache.kafka.connect.transforms.InsertField$Value",
+    "transforms.addStaticField.static.field": "pipeline_version",
+    "transforms.addStaticField.static.value": "v1.0"
+  }
+}

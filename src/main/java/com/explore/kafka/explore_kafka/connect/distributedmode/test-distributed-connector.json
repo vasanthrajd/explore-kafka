@@ -1,0 +1,15 @@
+{
+  "name": "test-distributed-connector",
+  "config": {
+    "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+    "tasks.max": "3",
+    "connection.url": "jdbc:postgresql://postgres:5432/testdb",
+    "connection.user": "postgres",
+    "connection.password": "postgres",
+    "mode": "incrementing",
+    "incrementing.column.name": "order_id",
+    "topic.prefix": "distributed-test-",
+    "table.whitelist": "public.orders",
+    "poll.interval.ms": "10000"
+  }
+}

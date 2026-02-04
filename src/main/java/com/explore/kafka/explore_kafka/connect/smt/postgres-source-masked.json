@@ -1,0 +1,33 @@
+{
+  "name": "postgres-source-masked",
+  "config": {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "database.hostname": "postgres",
+    "database.port": "5432",
+    "database.user": "postgres",
+    "database.password": "postgres",
+    "database.dbname": "testdb",
+    "database.server.name": "masked-db",
+    "table.include.list": "public.customers",
+    "plugin.name": "pgoutput",
+    "slot.name": "masked_slot",
+    "publication.name": "masked_pub",
+    "topic.prefix": "masked",
+
+    "transforms": "unwrap,maskCC,maskSSN,maskEmail",
+
+    "transforms.unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
+
+    "transforms.maskCC.type": "org.apache.kafka.connect.transforms.MaskField$Value",
+    "transforms.maskCC.fields": "credit_card",
+    "transforms.maskCC.replacement": "****-****-****-****",
+
+    "transforms.maskSSN.type": "org.apache.kafka.connect.transforms.MaskField$Value",
+    "transforms.maskSSN.fields": "ssn",
+    "transforms.maskSSN.replacement": "***-**-****",
+
+    "transforms.maskEmail.type": "org.apache.kafka.connect.transforms.MaskField$Value",
+    "transforms.maskEmail.fields": "email",
+    "transforms.maskEmail.replacement": "***@*****.com"
+  }
+}

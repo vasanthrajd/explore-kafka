@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: atm-stream-app
+  kafka:
+    bootstrap-servers: localhost:9092
+    #bootstrap-servers: 127.0.0.1:9092, 127.0.0.1:9093, 127.0.0.1:9094
+    streams:
+      application-id: atm-stream-app-v1

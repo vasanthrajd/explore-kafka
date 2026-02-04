@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "stream-state-collections",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

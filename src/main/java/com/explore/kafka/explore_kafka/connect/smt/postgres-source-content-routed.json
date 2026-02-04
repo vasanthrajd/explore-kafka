@@ -1,0 +1,23 @@
+{
+  "name": "postgres-source-content-routed",
+  "config": {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "database.hostname": "postgres",
+    "database.port": "5432",
+    "database.user": "postgres",
+    "database.password": "postgres",
+    "database.dbname": "testdb",
+    "database.server.name": "content-routed",
+    "table.include.list": "public.orders",
+    "plugin.name": "pgoutput",
+    "slot.name": "content_routed_slot",
+    "publication.name": "content_routed_pub",
+    "topic.prefix": "content-routed",
+
+    "transforms": "unwrap,router",
+    "transforms.unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
+    "transforms.router.type": "io.debezium.transforms.ByLogicalTableRouter",
+    "transforms.router.topic.regex": "content-routed\\.public\\.orders",
+    "transforms.router.topic.replacement": "orders-${status}"
+  }
+}

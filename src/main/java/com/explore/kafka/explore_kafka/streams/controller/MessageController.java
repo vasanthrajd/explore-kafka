@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Slf4j
 @RestController
 @RequestMapping("/api/messages")
@@ -31,6 +34,7 @@ public class MessageController {
     @PostMapping("/send")
     public String sendMessage(@RequestBody OrderEvent orderEvent) {
         try {
+
             String messageJson = objectMapper.writeValueAsString(orderEvent);
             kafkaTemplate.send(inputTopic, orderEvent.orderId(), messageJson);
             log.info("Message sent to topic: {} with key: {}", inputTopic, orderEvent.orderId());

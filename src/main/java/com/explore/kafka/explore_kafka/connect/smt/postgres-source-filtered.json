@@ -1,0 +1,23 @@
+{
+  "name": "postgres-source-filtered",
+  "config": {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "database.hostname": "postgres",
+    "database.port": "5432",
+    "database.user": "postgres",
+    "database.password": "postgres",
+    "database.dbname": "testdb",
+    "database.server.name": "filter-test",
+    "table.include.list": "public.orders",
+    "plugin.name": "pgoutput",
+    "slot.name": "filter_slot",
+    "publication.name": "filter_pub",
+    "topic.prefix": "filtered-orders",
+
+    "transforms": "unwrap,filter",
+    "transforms.unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
+    "transforms.filter.type": "io.debezium.transforms.Filter",
+    "transforms.filter.language": "jsr223.groovy",
+    "transforms.filter.condition": "value.status != 'COMPLETED'"
+  }
+}

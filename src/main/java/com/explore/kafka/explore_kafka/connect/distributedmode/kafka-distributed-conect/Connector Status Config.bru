@@ -1,0 +1,11 @@
+meta {
+  name: Connector Status Config
+  type: http
+  seq: 6
+}
+
+get {
+  url: http://localhost:8085/connectors/jdbc-source-multi-task/config
+  body: none
+  auth: inherit
+}

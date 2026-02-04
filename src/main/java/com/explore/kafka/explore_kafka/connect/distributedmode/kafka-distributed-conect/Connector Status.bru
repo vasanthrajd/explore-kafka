@@ -1,0 +1,11 @@
+meta {
+  name: Connector Status
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://localhost:8083/connectors/jdbc-sink-with-transforms/status
+  body: none
+  auth: inherit
+}

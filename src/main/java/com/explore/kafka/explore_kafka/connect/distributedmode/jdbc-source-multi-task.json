@@ -1,0 +1,19 @@
+{
+  "name": "jdbc-source-multi-task",
+  "config": {
+    "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+    "tasks.max": "3",
+    "connection.url": "jdbc:postgresql://postgres:5432/testdb",
+    "connection.user": "postgres",
+    "connection.password": "postgres",
+    "mode": "incrementing",
+    "incrementing.column.name": "order_id",
+    "topic.prefix": "jdbc-orders-",
+    "table.whitelist": "public.orders",
+    "poll.interval.ms": "5000",
+    "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "key.converter.schemas.enable": "true",
+    "value.converter.schemas.enable": "true"
+  }
+}
