@@ -1,0 +1,11 @@
+execution:
+  planner: blink
+  type: streaming
+  result-mode: table
+  max-table-result-rows: 1000000
+
+configuration:
+  rest.address: jobmanager
+  rest.port: 8081
+  execution.checkpointing.interval: 60s
+  state.backend: rocksdb
